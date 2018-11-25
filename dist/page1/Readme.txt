@@ -1,0 +1,1 @@
+sortableJs是一款带排序功能的js masonry瀑布流插件。sortableJs能够使元素以卡片形式显示，并以masonry瀑布流方式进行布局，通过点击分类按钮，可以将卡片按指定的方式动态排序。

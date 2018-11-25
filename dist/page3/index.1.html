@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript">
+	var array;
+	var len,amount;
+ 	var id1,id2,id3,id4,id5,id6,id7,id8,id9,id10;
+  	var res1,res2,res3,res4,res5,res6,res7,res8,res9,res10;
+			function getvalue(name){    
+			var str=window.location.search;   //location.search是从当前URL的?号开始的字符串     
+			if (str.indexOf(name)!=-1)//判断是否收到值
+			 {                
+			 var pos_start=str.indexOf(name)+name.length+1;  //解析获取值   
+			 var pos_end=str.length;        
+			 var str = str.substring(pos_start,pos_end);
+			 array = str.split("&");
+			 }
+			}
+			window.addEventListener('load', function () {
+			getvalue("id1");
+			id1 = array[0];
+			id2 = array[1];
+			id3 = array[2];
+			id4 = array[3];
+			id5 = array[4];
+			id6 = array[5];
+			id7 = array[6];
+			id8 = array[7];
+			id9 = array[8];
+			id10 = array[9];
+			res1 = array[10];
+			res2 = array[11];
+			res3 = array[12];
+			res4 = array[13];
+			res5 = array[14];
+			res6 = array[15];
+			res7 = array[16];
+			res8 = array[17];
+			res9 = array[18];
+			res10 = array[19];
+			len = array[20];
+			amount = array[21];
+			
+			document.getElementById("id1").innerText = id1;
+			document.getElementById("id2").innerText = id2;
+			document.getElementById("id3").innerText = id3;
+			document.getElementById("id4").innerText = id4;
+			document.getElementById("id5").innerText = id5;
+			document.getElementById("id6").innerText = id6;
+			document.getElementById("id7").innerText = id7;
+			document.getElementById("res1").innerText = res1;
+			document.getElementById("res2").innerText = res2;
+			document.getElementById("res3").innerText = res3;
+			document.getElementById("res4").innerText = res4;
+			document.getElementById("res5").innerText = res5;
+			document.getElementById("res6").innerText = res6;
+			document.getElementById("res7").innerText = res7;
+		  }, false);
+		</script>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css.css">
+  <script src="js.js" charset="utf-8"></script>
+	<title>Document</title>
+</head>
+<body>
+
+
+<div class="bodyinside">
+
+	<div class="table">
+		<div class="table-cell">
+			<img class="logoimg" id="back" src="images/back.png" alt=""  onclick="window.open('http://www.buaagsu.com/anniversary/dist/page3/index.html')">
+		</div>
+	</div>
+
+	<div class="top3">
+		<div class="container first">
+			<span class="name1 left" id="id1">王花花王花花</span><span class="fenshu1 right" id="res1">888</span><hr style="width:100%"/>
+		</div>
+		<div class="container second">
+			<span class="name2 left"id="id2">王花花王花花王花花</span><span class="fenshu2 right" id="res2">777</span><hr style="width:100%"/>
+		</div>
+		<div class="container third">
+			<span class="name3 left" id="id3">王花花王花花王花花</span><span class="fenshu3 right" id="res3">666</span><hr style="width:100%"/>
+		</div>
+	</div>
+
+	<div class="other">
+		<div class="container first">
+			<span class="name4 left" id="id4">王花花</span><span class="fenshu4 right" id="res4">666</span><hr style="width:100%"/>
+		</div>
+		<div class="container first">
+			<span class="name5 left" id="id5">王花花</span><span class="fenshu5 right" id="res5">666</span><hr style="width:100%"/>
+		</div>
+		<div class="container first">
+			<span class="name6 left" id="id6">王花花</span><span class="fenshu6 right" id="res6">66</span><hr style="width:100%"/>
+		</div>
+		<div class="container first">
+			<span class="name7 left" id="id7">王花花</span><span class="fenshu7 right" id="res7">6</span>
+		</div>
+	</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

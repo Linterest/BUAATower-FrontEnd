@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no,minimal-ui">
+    <title>我为北航盖楼啦</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        img {
+            /* width: 100% */
+        }
+
+        html {
+            background: #FFF;
+            height: 100%
+        }
+
+        body {
+            font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+            margin: 0 auto;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            background: #F95240 url(./assets/main-bg.png)
+        }
+
+        @media screen and (min-height: 560px) {
+            html {
+                font-size: 100px
+            }
+        }
+
+        @media screen and (min-height: 640px) {
+            html {
+                font-size: 112.5px
+            }
+        }
+
+        @media screen and (min-height: 720px) {
+            html {
+                font-size: 125px
+            }
+        }
+
+        @media screen and (min-height: 800px) {
+            html {
+                font-size: 137.5px
+            }
+        }
+
+        @media screen and (min-height: 880px) {
+            html {
+                font-size: 150px
+            }
+        }
+
+        @media screen and (min-height: 960px) {
+            html {
+                font-size: 162.5px
+            }
+        }
+
+        @media screen and (min-height: 1040px) {
+            html {
+                font-size: 180px
+            }
+        }
+
+        @media screen and (min-height: 1200px) {
+            html {
+                font-size: 200px
+            }
+        }
+
+        html {
+            font-size: 17.6vh
+        }
+
+        #canvas {
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        a {
+            text-decoration: none
+        }
+
+        li,
+        ul,
+        ol {
+            list-style-type: none;
+            padding: 0;
+            margin: 0
+        }
+
+        .hide {
+            display: none
+        }
+
+        .clear {
+            clear: both
+        }
+
+        .loading {
+            background-color: rgb(233, 57, 57);
+            height: 100%;
+            width: 100%;
+        }
+
+        .loading .main {
+            width: 45%;
+            margin: 0 auto;
+            color: #FFF
+        }
+
+        .loading .main img {
+            width: 60%;
+            margin: 1rem auto 0
+        }
+
+        .loading .main .title {
+            font-size: .3rem
+        }
+
+        .loading .main .text {
+            font-size: .15rem
+        }
+
+        .loading .main .bar {
+            height: .12rem;
+            width: 100%;
+            border: 3px solid #FFF;
+            border-radius: .6rem;
+            margin: .1rem 0;
+        }
+
+        .loading .main .bar .sub {
+            height: .1rem;
+            width: 98%;
+            margin: .008rem auto 0;
+        }
+
+        .loading .main .bar .percent {
+            height: 100%;
+            width: 0;
+            background-color: #FFF;
+            border-radius: .6rem;
+        }
+
+        .loading .logo {
+            position: absolute;
+            bottom: .3rem;
+            left: 0;
+            right: 0
+        }
+
+        .loading .logo img {
+            width: 1rem
+        }
+
+        .content {
+            height: 100vh;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .landing .title {
+            width: 60%;
+        }
+
+        .landing .logo {
+            width: 30%;
+            position: absolute;
+            right: .2rem;
+            top: .2rem;
+        }
+
+        .landing .action-2 {
+            position: absolute;
+            bottom: 0.3rem;
+            width: 100%;
+        }
+
+        .landing .action-3 {
+            position: absolute;
+            bottom: 0.8rem;
+            width: 100%;
+        }
+
+
+        .landing .start {
+            width: 65%;
+        }
+
+        .slideTop {
+            -webkit-animation: st 1s ease-in-out;
+            animation: st 1s ease-in-out;
+        }
+
+        @-webkit-keyframes st {
+            0% {
+                transform: translateZ(0)
+            }
+
+            100% {
+                transform: translate3d(0, -100%, 0)
+            }
+        }
+
+        @keyframes st {
+            0% {
+                transform: translateZ(0)
+            }
+
+            100% {
+                transform: translate3d(0, -100%, 0)
+            }
+        }
+
+        .slideBottom {
+            -webkit-animation: sb 1s ease-in-out;
+            animation: sb 1s ease-in-out;
+        }
+
+        @-webkit-keyframes sb {
+            0% {
+                transform: translateZ(0)
+            }
+
+            100% {
+                transform: translate3d(0, 200%, 0)
+            }
+        }
+
+        @keyframes sb {
+            0% {
+                transform: translateZ(0)
+            }
+
+            100% {
+                transform: translate3d(0, 200%, 0)
+            }
+        }
+
+        .swing {
+            -webkit-animation: sw 2s ease-in-out alternate infinite;
+            animation: sw 2s ease-in-out alternate infinite;
+        }
+
+        @-webkit-keyframes sw {
+            0% {
+                transform: rotate(5deg);
+                transform-origin: top center;
+            }
+
+            100% {
+                transform: rotate(-5deg);
+                transform-origin: top center;
+            }
+        }
+
+        @keyframes sw {
+            0% {
+                transform: rotate(5deg);
+                transform-origin: top center;
+            }
+
+            100% {
+                transform: rotate(-5deg);
+                transform-origin: top center;
+            }
+        }
+
+        .modal .modal-content {
+            position: fixed;
+            height: 100%;
+            width: 90%;
+            margin-top: .3rem;
+            top: 0;
+            background: #FFF;
+        }
+
+        .modal .main {
+            width: 100%;
+            /* height:1920px;
+            width:1080px; */
+            margin: -0.3rem auto;
+            margin-bottom: .3rem;
+
+        }
+
+        .modal .container {
+            position: relative;
+        }
+
+        .modal #bg {
+            /* width: 100%; */
+            position: absolute;
+            top: 0;
+            left: 0
+        }
+
+        .modal .modal-main {
+            /* width: 100%; */
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin-top: 0;
+        }
+
+        .modal .over-img {
+            width: 45%;
+            margin: .8rem auto 0
+        }
+
+        .modal .person-score {
+            transform: rotate(0deg);
+            margin-top: 2.1rem;
+            font-size: .5rem;
+            color: #f6efed;
+            font-family: fantasy;
+
+        }
+
+        .modal .total-score {
+            margin-left: 1.8rem;
+            transform: rotate(-16deg);
+            margin-top: 0.13rem;
+            font-size: .15rem;
+            color: #f6efed;
+            font-family: fantasy;
+
+        }
+
+        .modal .tip {
+            font-size: .16rem;
+            color: #9B724E;
+            padding-bottom: 100 px;
+            /* z-index: 999; */
+
+        }
+
+        .modal .over-button-b {
+            width: 38%;
+            margin: 0.1rem auto 0
+        }
+
+        .wxShare {
+            background: rgba(#000000, 0);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 11;
+            opacity: .9
+        }
+
+        .wxShare img {
+            width: 30%;
+            float: right;
+            margin: 290px 130px 0 0
+        }
+
+        @font-face {
+            font-family: 'wenxue';
+            src: url('./assets/wenxue.eot');
+            src: url('./assets/wenxue.eot'),
+                url('./assets/wenxue.woff'),
+                url('./assets/wenxue.ttf'),
+                url('./assets/wenxue.svg');
+        }
+
+        .font-wenxue {
+            font-family: 'wenxue';
+        }
+
+        #username {
+            position: absolute;
+            left: 30px;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 0.13rem;
+            display: inline-block;
+            float: left;
+        }
+
+        #cengshu {
+            position: absolute;
+            right: 30px;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 0.13rem;
+            display: inline-block;
+            float: right;
+        }
+
+        .topmessage {
+            margin-top: 0;
+        }
+
+        #imgX {
+            background-color: #FFF;
+            background-size: cover;
+
+        }
+
+        /*弹出*/
+        .bodyinside {
+            margin: 0 auto;
+            width: 100%;
+            height: 100%;
+            background-image: url("./assets/toplist.png");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+
+        .logoimg {
+            width: 60px;
+            margin-top: 10px;
+        }
+
+        p {
+            display: inline-block;
+            height: 40px;
+            margin: 0;
+            font-family: "Microsoft YaHei";
+        }
+
+        .top3 {
+            margin-left: 70px;
+            margin-top: 24vh;
+        }
+
+        .other {
+            margin-left: 60px;
+            margin-top: 19px;
+
+        }
+
+        .top3 .container {
+            padding: 5px;
+            display: block;
+            font-size: 17px;
+            font-weight: 600;
+            line-height: 5vh;
+            width: 80%;
+        }
+
+        .other .container {
+            margin: 10px;
+            padding: 3px;
+            display: block;
+            font-size: 17px;
+            font-weight: 400px;
+            line-height: 1.8em;
+            width: 80%;
+
+        }
+
+        .other .container .p {
+            vertical-align: middle;
+        }
+
+        .right {
+            float: right;
+
+            color: #a74f3a;
+            margin-left: 15px;
+        }
+
+        .left {
+            float: left;
+            color: #a74f3a;
+            margin-left: 10px;
+
+        }
+
+        .table {
+            margin-top: 0px;
+            margin-left: 20px;
+        }
+
+        .table-cell {
+            width: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" class="hide"></canvas>
+    <div class="content">
+        <div class="loading">
+            <div class="main"><img src="./assets/main-loading.gif">
+                <div class="progress">
+                    <div class="title font-wenxue">0%</div>
+                    <div class="bar">
+                        <div class="sub">
+                            <div class="percent"></div>
+                        </div>
+                    </div>
+                    <div class="text">加载中</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="landing hide">
+            <div class="action-1">
+                <img src="./assets/main-index-title.png" class="title swing">
+            </div>
+            <div class="action-2"><img id="start" src="./assets/main-index-start.png" class="start"></div>
+            <p></p>
+        </div>
+        <div id="modal" class="modal hide">
+            <div class="js-modal-content modal-content">
+                <div class="main">
+                    <div class="container">
+                        <!-- <div id= "imgX"> -->
+                        <div id="imgX" style="height:80vh;">
+                            <!-- <img src="./assets/main-picture-bg-blue-last.png" id="bg"> -->
+                            <img id='bg1' src="./assets/main-picture-bg-1.png" width="90%" height="90%" style="display: none;">
+                            <img id='bg2' src="./assets/main-picture-bg-2.png" width="90%" height="90%" style="display: none;">
+                            <img id='bg3' src="./assets/main-picture-bg-3.png" width="90%" height="90%" style="display: none;">
+                            <img id='bg4' src="./assets/main-picture-bg-4.png" width="90%" height="90%" style="display: none;">
+                            <img id='bg5' src="./assets/main-picture-bg-5.png" width="90%" height="90%" style="display: none;">
+                            <img id='bg6' src="./assets/main-picture-bg-6.png" width="90%" height="90%" style="display: none;">
+                            <img id='bg7' src="./assets/main-picture-bg-7.png" width="90%" height="90%" style="display: none;">
+                            <img id='bg8' src="./assets/main-picture-bg-8.png" width="90%" height="90%" style="display: none;">
+                            <img id='bg9' src="./assets/main-picture-bg-red-last.png" width="90%" height="90%" style="display: none;">
+                            <img id='qrc' src="./assets/1540451426.png" width="90%" height="90%" style="display: none;">
+                        </div>
+                        <div class="tip">
+                            <p></p>
+                            <img src="./assets/page1.png" class="over-button-b js-reload"><span>&nbsp&nbsp&nbsp&nbsp</span><img
+                                src="./assets/main-modal-rank-b.png" class="over-button-b js-rank">
+                        </div>
+                    </div>
+                    <!-- <div class="modal-main">
+                                <div class="topmessage"><div id="username"></div><div id="cengshu"></div></div>
+                                <div id="over-modal" class="hide js-modal-card">
+                                    <div id="score" class="person-score"></div>
+                                    <div id="total-score" class="total-score"></div>
+                                    <div id="over-zero" class="hide">
+
+                                </div>
+                            </div> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 弹出排行榜-->
+
+
+        <div id="toplist" class="modal hide">
+            <div class="js-modal-content modal-content" style="height: 100vh;width: 100vw;">
+                <div class="main" style="height: 100%;width: 100%;">
+                    <div class="container" style="height: 100%;width: 100%;">
+                        <div class="bodyinside">
+
+                            <div class="table">
+                                <div class="table-cell">
+                                    <img class="logoimg" id="back" src="./assets/back.png" alt="" onclick="toplistHide()">
+                                </div>
+                            </div>
+
+                            <div class="top3">
+                                <div class="container first">
+                                    <span class="name1 left" id="id1">王花花王花花</span><span class="fenshu1 right" id="res1">888</span>
+                                    <hr style="width:100%" />
+                                </div>
+                                <div class="container second">
+                                    <span class="name2 left" id="id2">王花花王花花王花花</span><span class="fenshu2 right" id="res2">777</span>
+                                    <hr style="width:100%" />
+                                </div>
+                                <div class="container third">
+                                    <span class="name3 left" id="id3">王花花王花花王花花</span><span class="fenshu3 right" id="res3">666</span>
+                                    <hr style="width:100%" />
+                                </div>
+                            </div>
+
+                            <div class="other">
+                                <div class="container first">
+                                    <span class="name4 left" id="id4">王花花</span><span class="fenshu4 right" id="res4">666</span>
+                                    <hr style="width:100%" />
+                                </div>
+                                <div class="container first">
+                                    <span class="name5 left" id="id5">王花花</span><span class="fenshu5 right" id="res5">666</span>
+                                    <hr style="width:100%" />
+                                </div>
+                                <div class="container first">
+                                    <span class="name6 left" id="id6">王花花</span><span class="fenshu6 right" id="res6">66</span>
+                                    <hr style="width:100%" />
+                                </div>
+                                <div class="container first">
+                                    <span class="name7 left" id="id7">王花花</span><span class="fenshu7 right" id="res7">6</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- -->
+
+    </div>
+
+
+    <div class="wxShare hide">
+        <img src="./assets/main-share-icon.png">
+    </div>
+    </div>
+    <script src="./dist/main.js"></script>
+    <script src="./assets/zepto-1.1.6.min.js"></script>
+    <script src="./src/jquery.min.js"></script>
+    <script>
+        var domReady, loadFinish, canvasReady, loadError, gameStart, game, score, successCount, id
+        var len, amount;
+        var id1, id2, id3, id4, id5, id6, id7, id8, id9, id10;
+        var res1, res2, res3, res4, res5, res6, res7, res8, res9, res10;
+        var nickname, openid;
+        // init window height and width
+        var gameWidth = window.innerWidth
+        var gameHeight = window.innerHeight
+        var ratio = 1.5
+
+        if (gameHeight / gameWidth < ratio) {
+            gameWidth = Math.ceil(gameHeight / ratio)
+        }
+        $('.content').css({ "height": gameHeight + "px", "width": gameWidth + "px" })
+        $('.js-modal-content').css({ "width": gameWidth + "px" })
+
+        function tijiao() {
+            var user = { "userid": openid, "result": successCount, "nickname": nickname };
+            var tmp = JSON.stringify(user);
+            // alert(tmp);
+            $.ajax({
+                url: "http://test.buaagsu.com:8084/test",
+                type: 'POST',
+                data: tmp,
+                contentType: "application/json;charset=utf-8",
+                dataType: 'json',
+                async: false,
+                success: function (resultdata) {
+                    console.log("传输成功");
+                    // alert("传输成功");
+                    jsonstr = JSON.stringify(resultdata);
+                    var jObject = JSON.parse(jsonstr);
+                    len = jObject.len;
+                    amount = jObject.count;
+                    id1 = jObject.id1;
+                    id2 = jObject.id2;
+                    id3 = jObject.id3;
+                    id4 = jObject.id4;
+                    id5 = jObject.id5;
+                    id6 = jObject.id6;
+                    id7 = jObject.id7;
+                    id8 = jObject.id8;
+                    id9 = jObject.id9;
+                    id10 = jObject.id10;
+                    res1 = jObject.result1;
+                    res2 = jObject.result2;
+                    res3 = jObject.result3;
+                    res4 = jObject.result4;
+                    res5 = jObject.result5;
+                    res6 = jObject.result6;
+                    res7 = jObject.result7;
+                    res8 = jObject.result8;
+                    res9 = jObject.result9;
+                    res10 = jObject.result10;
+                },
+            });
+        }
+
+
+        // loading animation
+        function hideLoading() {
+            if (domReady && canvasReady) {
+                $('#canvas').show()
+                loadFinish = true
+                setTimeout(function () {
+                    $('.loading').hide()
+                    $('.landing').show()
+                }, 1000)
+            }
+        }
+
+        function updateLoading(status) {
+            var success = status.success
+            var total = status.total
+            var failed = status.failed
+            if (failed > 0 && !loadError) {
+                loadError = true
+                alert('加载失败 请刷新后重试')
+                return
+            }
+            var percent = parseInt((success / total) * 100);
+            if (percent === 100 && !canvasReady) {
+                canvasReady = true
+                hideLoading()
+            }
+            percent = percent > 98 ? 98 : percent
+            percent = percent + '%'
+            $('.loading .title').text(percent);
+            $('.loading .percent').css({
+                'width': percent
+            })
+        }
+
+         function overShowOver() {
+            tijiao();
+            $('#modal').show()
+            //$('#over-modal').show()
+            //$('#over-zero').show()
+        }
+
+        function toplistShow() {
+            document.getElementById("id1").innerText = id1;
+			document.getElementById("id2").innerText = id2;
+			document.getElementById("id3").innerText = id3;
+			document.getElementById("id4").innerText = id4;
+			document.getElementById("id5").innerText = id5;
+			document.getElementById("id6").innerText = id6;
+			document.getElementById("id7").innerText = id7;
+			document.getElementById("res1").innerText = res1;
+			document.getElementById("res2").innerText = res2;
+			document.getElementById("res3").innerText = res3;
+			document.getElementById("res4").innerText = res4;
+			document.getElementById("res5").innerText = res5;
+			document.getElementById("res6").innerText = res6;
+			document.getElementById("res7").innerText = res7;
+            $('#modal').hide()
+            $('#toplist').show()
+        }
+        function toplistHide() {
+            $('#toplist').hide()
+            $('#modal').show()
+        }
+
+        // game customization options
+        const option = {
+            width: gameWidth,
+            height: gameHeight,
+            canvasId: 'canvas',
+            soundOn: false,
+            setGameScore: function (s) {
+                score = s
+            },
+            setGameSuccess: function (s) {
+                successCount = s
+            },
+            setGameFailed: function (f) {
+                $('#score').text(successCount)
+                if (f >= 3) overShowOver()
+            }
+        }
+
+        // game init with option
+        function gameReady() {
+            game = TowerGame(option)
+
+            game.load(function () {
+
+                game.playBgm()
+                game.init()
+
+            }, updateLoading)
+        }
+
+        var isWechat = navigator.userAgent.toLowerCase().indexOf("micromessenger") !== -1
+        if (isWechat) {
+            document.addEventListener("WeixinJSBridgeReady", gameReady, false)
+        } else {
+            gameReady()
+        }
+
+        function indexHide() {
+            $('.landing .action-1').addClass('slideTop')
+            $('.landing .action-2').addClass('slideBottom')
+            $('.landing .action-3').addClass('slideBottom')
+            setTimeout(function () {
+                $('.landing').hide()
+            }, 950)
+        }
+
+        // click event
+        $('#start').on('click', function () {
+            if (gameStart) return
+            gameStart = true
+            indexHide()
+            setTimeout(game.start, 400)
+        })
+
+        $('#jmp2page1').on('click', function () {
+            ceshi = 100;
+            window.location.href = "./dist/page1/index.html?ceshi=" + ceshi
+        })
+
+        $('.js-reload').on('click', function () {
+            window.location.href = "./dist/page1/index.html"
+        })
+
+        $('.js-rank').on('click', function () {
+           // window.location.href = "./dist/page2/index.html?id1=" + id1 + "&" + id2 + "&" + id3 + "&" + id4 + "&" + id5 + "&" + id6 + "&" + id7 + "&" + id8 + "&" + id9 + "&" + id10 +
+             //   "&" + res1 + "&" + res2 + "&" + res3 + "&" + res4 + "&" + res5 + "&" + res6 + "&" + res7 + "&" + res8 + "&" + res9 + "&" + res10 +
+               // "&" + len + "&" + amount + "&" + nickname + "&" + openid;
+               toplistShow();
+        })
+
+        $('.wxShare').on('click', function () {
+            $('.wxShare').hide()
+        })
+
+        // listener
+        window.addEventListener('load', function () {
+            let turl = window.location.href;
+            let code_s = turl.indexOf('?') + 1;
+            let code_e = turl.lastIndexOf('&');
+            let code = turl.slice(code_s, code_e);
+            let state = turl.slice(code_e + 1);
+            let rurl = 'http://www.buaagsu.com/buaa/autho/wx_auth' + '?' + code + '&' + state
+            $.get(rurl, function (data, status) {
+                nickname = data.data.nickname;
+                // if(nickname == null){
+                //     window.location.href="http://www.buaagsu.com/anniversary/dist/page3/index.html";
+                // }
+                openid = data.data.openId;
+            })
+            // nickname = "test17";
+            // openid = "6214";
+            domReady = true
+            hideLoading()
+        }, false);
+    </script>
+</body>
+
+</html>

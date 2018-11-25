@@ -1,0 +1,76 @@
+<html lang="en">
+    
+<script src="jquery.min.js"></script>
+<script type="text/javascript">
+  window.addEventListener('load', function () {
+    //   http.get(
+    //       'http://www.buaagsu.com/buaa/wx/getLoginUrl?redirectUrl=http://testwxpage.nat300.top/keyword', 
+    //   ).then((res)=>{
+    //     //   console.log('response data.url************', res);
+    //       this.url = res.data.data.url;
+    //       alert(res);
+    //       window.location.href = this.url;
+    //     }).catch((err)=>{
+    //     //   console.log(err.errmsg);
+    //   })
+    
+    var url = 'http://www.buaagsu.com/buaa/wx/getLoginUrl?redirectUrl=http://www.buaagsu.com/anniversary/'
+    // $.get(url,function(data,status){
+    //     alert(data);
+    //     console.log('$(data)');
+    // });
+    // const urltmp = {redirectUrl:"http://testwxpage.nat300.top/keyword"}; 
+    // import axios from 'axios'
+    // axios({
+    //     method:'get',
+    //     url:url,
+    //     data:urltmp
+    // })
+    // .then(data=>console.log(data))
+    // .catch(err=>console.log(err))
+    // domReady = true
+    // hideLoading()
+    // var urltmp = {redirectUrl:"http://cv9ama.natappfree.cc"}; 
+  	// alert(tmp);
+  	$.ajax({
+  	    url: url,
+        type: 'GET',
+        // data: urltmp,
+  	    success: function (resultdata) {
+            var url1 = resultdata.data.url;
+            window.location.href = url1;
+    //         //   var code_s = url1.indexOf('?')+1;
+    //         //   var code_e = url1.lastIndexOf('');
+    //         //   var code = url1.substring(code_s,code_e);
+    //         //   var state = url1.substring(code_e+1,url1.len);
+    //         //   let rurl = 'http://www.buaagsu.com/buaa/autho/wx_auth' + '?' + code + '&' + state;
+    //         let turl = url1;
+    //         let code_s = turl.indexOf('?')+1;
+    //         let code_e = turl.lastIndexOf('&');
+    //         let code = turl.slice( code_s, code_e);
+    //         let state = turl.slice( code_e+1);
+    //         let rurl = 'http://www.buaagsu.com/buaa/autho/wx_auth';
+    //         let urltmp2 = {"code":code,"state":state};
+    //           $.ajax({
+  	//              url: rurl,
+    //              type: 'GET',
+    //              data:urltmp2,
+  	//             success: function (resultdata) {
+  	//             },
+  	// });
+  	    },
+  	});
+  }, false);
+</script>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css.css">
+
+  
+	<title>我为北航盖楼啦</title>
+</head>
+
+
+</html>
